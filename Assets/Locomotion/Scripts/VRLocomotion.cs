@@ -36,6 +36,7 @@ public class VRLocomotion : MonoBehaviour
         HandleRotation();
         HandleMovement();
         HandleTeleport();
+
     }
 
     private void HandleTeleport()
@@ -77,26 +78,34 @@ public class VRLocomotion : MonoBehaviour
         {
             // Reduce the time left in the fade
             fadeTime -= Time.deltaTime;
+           
             // Calculate the alpha of the black fade image
             float percent = fadeTime / fadeDuration;
+            
             fadeImage.color = Color.Lerp(Color.black, Color.clear, percent);
+            
             // Take a break for a frame so other code can run
             yield return new WaitForEndOfFrame();
         }
         // Make sure the fade image is completely black
         fadeImage.color = Color.black;
+        
         // Do the teleport!
         player.position = destination;
+        
         // Start fading to black over some time
         fadeTime = fadeDuration;
+        
         // While we're still fading
         while (fadeTime > 0)
         {
             // Reduce the time left in the fade
             fadeTime -= Time.deltaTime;
+        
             // Calculate the alpha of the black fade image
             float percent = fadeTime / fadeDuration;
             fadeImage.color = Color.Lerp(Color.clear, Color.black, percent);
+            
             // Take a break for a frame so other code can run
             yield return new WaitForEndOfFrame();
         }
