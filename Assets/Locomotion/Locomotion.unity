@@ -785,6 +785,7 @@ MonoBehaviour:
   numCurveSegments: 20
   fadeDuration: 1
   fadeImage: {fileID: 1134261425}
+  teleportActivateButton: XRI_Right_PrimaryButton
 --- !u!114 &1492167432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +809,7 @@ MonoBehaviour:
   numCurveSegments: 20
   fadeDuration: 1
   fadeImage: {fileID: 1134261425}
+  teleportActivateButton: XRI_Left_PrimaryButton
 --- !u!120 &1492167446
 LineRenderer:
   m_ObjectHideFlags: 0

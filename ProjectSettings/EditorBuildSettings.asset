@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VRHandDemo.unity
     guid: 331d4e99362dd7e40bf8fd2183d98fdb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Locomotion/Locomotion.unity
     guid: ff5ba6380d958dd4384f8b830db742fe
+  - enabled: 1
+    path: Assets/VRInteractions/VRInteractions.unity
+    guid: 0c4c3a2f2dfffee4b974a0ef419d5071
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2751bcf816ce77545bde5f989f2ddc41, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 06fcd0012f25dc448acb0a53c5905cb2, type: 2}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabberObject : MonoBehaviour
+public class GrabberObject : InteractiveObject
 {
     [SerializeField] private Color hoveredColor;
 
@@ -39,17 +39,17 @@ public class GrabberObject : MonoBehaviour
         }
     }
 
-    public void OnHoverStart()
+    public override void OnHoverStart()
     {
         material.color = hoveredColor;
     }
 
-    public void OnHoverEnd()
+    public override void OnHoverEnd()
     {
         material.color = originalColor;
     }
 
-    public void OnGrabStart(Grabber hand)
+    public override void OnGrabStart(Grabber hand)
     {
         isHeld = true;
         this.transform.parent = hand.transform;
@@ -62,7 +62,7 @@ public class GrabberObject : MonoBehaviour
         //this.transform.parent = hand.transform;
     }
 
-    public void OnGrabEnd()
+    public override void OnGrabEnd()
     {
         isHeld = false;
         this.transform.parent = null;
@@ -86,4 +86,8 @@ public class GrabberObject : MonoBehaviour
         isHeld = false;
         this.transform.parent = null;
     }
+
+ 
+
+   
 }

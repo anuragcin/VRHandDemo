@@ -12,13 +12,13 @@ public class Grabber : MonoBehaviour
     [SerializeField] private Hand hand;
     [SerializeField] private Animator anim;
     private string gripButton;
-
-    private GrabberObject hoveredObject;
-    private GrabberObject grabbedObject;
+    private string triggerButton;
+    private InteractiveObject hoveredObject;
+    private InteractiveObject grabbedObject;
 
     private void OnTriggerEnter(Collider other)
     {
-        GrabberObject touchingObject = other.GetComponent<GrabberObject>();
+        InteractiveObject touchingObject = other.GetComponent<InteractiveObject>();
         if (touchingObject != null)
         {
             hoveredObject = touchingObject;
@@ -28,7 +28,7 @@ public class Grabber : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GrabberObject stoptouchingObject = other.GetComponent<GrabberObject>();
+        InteractiveObject stoptouchingObject = other.GetComponent<InteractiveObject>();
         if (stoptouchingObject == hoveredObject && stoptouchingObject != null)
         {
             hoveredObject.OnHoverEnd();
@@ -40,6 +40,7 @@ public class Grabber : MonoBehaviour
     void Start()
     {
         gripButton = "XRI_" + hand +"_GripButton";
+        triggerButton = "XRI_" + hand + "_TriggerButton";
     }
 
     // Update is called once per frame
@@ -67,6 +68,16 @@ public class Grabber : MonoBehaviour
                 grabbedObject.OnGrabEnd();
                 grabbedObject = null;
             }
+        }
+        
+        if (Input.GetButtonDown(triggerButton) && grabbedObject !=null)
+        {
+            grabbedObject.OnTriggerStart();
+        }
+
+        if (Input.GetButtonUp(triggerButton) && grabbedObject != null)
+        {
+            grabbedObject.OnTriggerEnd();
         }
     }
 }
