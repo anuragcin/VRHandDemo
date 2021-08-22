@@ -18,9 +18,10 @@ public class VRLocomotion : MonoBehaviour
     public int numCurveSegments;
     public float fadeDuration;
     public RawImage fadeImage;
+    public string teleportActivateButton;
 
     private LineRenderer teleportBeam;
-
+    
 
     public void Start()
     {
@@ -42,7 +43,7 @@ public class VRLocomotion : MonoBehaviour
     private void HandleTeleport()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, teleportRange))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, teleportRange) && Input.GetButton(teleportActivateButton))
         {
             teleportBeam.enabled = true;
             //teleportBeam.SetPosition(0, transform.position);
