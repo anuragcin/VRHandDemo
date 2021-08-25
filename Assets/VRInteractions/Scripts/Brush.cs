@@ -14,6 +14,7 @@ public class Brush : GrabberObject
     private TrailRenderer currentStroke;
     private int currentColorIndex;
     private Color currentColor;
+    private Stack<TrailRenderer> previousStrokes = new Stack<TrailRenderer>();
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class Brush : GrabberObject
         base.OnTriggerEnd();
         //unparent the current brush stroke from brush tip
         currentStroke.transform.SetParent(null);
+
+        previousStrokes.Push(currentStroke);
 
     }
 
@@ -62,5 +65,17 @@ public class Brush : GrabberObject
         //Change the color of the brush tip
         tip.GetComponent<Renderer>().material.color = currentColor;
 
+    }
+
+    public void undo()
+    {
+        //If there are any previous strokes 
+        if (previousStrokes.Count > 0)
+        {
+            //pop the most recent stroke from the stack
+            var lastStroke = previousStrokes.Pop();
+            Destroy(lastStroke.gameObject, 2f);
+
+        }
     }
 }
